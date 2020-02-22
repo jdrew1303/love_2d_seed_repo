@@ -1,0 +1,15 @@
+[submodule "modules/push"]
+	path = modules/push
+	url = https://github.com/Ulydev/push
+[submodule "modules/concord"]
+	path = modules/concord
+	url = https://github.com/Tjakka5/Concord.git
+[submodule "modules/hump"]
+	path = modules/hump
+	url = https://github.com/vrld/hump.git
+[submodule "modules/hc"]
+	path = modules/hc
+	url = https://github.com/vrld/HC.git
+[submodule "modules/lua-state-machine"]
+	path = modules/lua-state-machine
+	url = https://github.com/kyleconroy/lua-state-machine.git
