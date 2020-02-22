@@ -40,7 +40,7 @@ mkdir "target"
 
 ### .love
 
-cp -r . target/src
+cp -r src target/src
 cd target/src
 
 # # compile .ink story into lua table so the runtime will not need lpeg dep.
