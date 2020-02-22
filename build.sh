@@ -55,13 +55,14 @@ if [ "$1" == "windows" ]; then
     unzip -o "target/love-win.zip" -d "target"
 
     tmp="target/tmp/"
-    mkdir -p "$tmp/$PACKAGE_NAME"
-    cat "target/love-${LOVE2D_VERSION}-win32/love.exe" "target/${PACKAGE_NAME}.love" > "$tmp/${PACKAGE_NAME}/${PACKAGE_NAME}.exe"
-    cp  target/love-"${LOVE2D_VERSION}"-win32/*dll target/love-"${LOVE2D_VERSION}"-win32/license* "$tmp/$PACKAGE_NAME"
+    mkdir -p "$tmp$PACKAGE_NAME"
+    
+    cat "target/love-${LOVE2D_VERSION}-win32/love.exe" "target/${PACKAGE_NAME}.love" > "$tmp${PACKAGE_NAME}/${PACKAGE_NAME}.exe"
+    cp  target/love-"${LOVE2D_VERSION}"-win32/*dll target/love-"${LOVE2D_VERSION}"-win32/license* "$tmp$PACKAGE_NAME"
     cd "$tmp"
     zip -q -9 -r - "$PACKAGE_NAME" > "${PACKAGE_NAME}-win.zip"
     cd -
-    cp "$tmp/${PACKAGE_NAME}-win.zip" "target/"
+    cp "$tmp${PACKAGE_NAME}-win.zip" "target/"
     rm -r "$tmp"
 fi
 
@@ -90,14 +91,14 @@ if [ "$1" == "macos" ]; then
     unzip -o "target/love-macos.zip" -d "target"
 
     tmp="target/tmp/"
-    mkdir -p "$tmp/$PACKAGE_NAME"
+    mkdir -p "$tmp$PACKAGE_NAME"
 
-    cp "target/love-${LOVE2D_VERSION}-macos/love.app" "$tmp/$PACKAGE_NAME"
-    cp "target/${PACKAGE_NAME}.love" "$tmp/$PACKAGE_NAME/love-${LOVE2D_VERSION}-macos/love.app/Contents/Resources/${PACKAGE_NAME}.love"
-    cp  target/love-"${LOVE2D_VERSION}"-macos/*dll target/love-"${LOVE2D_VERSION}"-macos/license* "$tmp/$PACKAGE_NAME"
+    cp "target/love-${LOVE2D_VERSION}-macos/love.app" "$tmp$PACKAGE_NAME"
+    cp "target/${PACKAGE_NAME}.love" "$tmp$PACKAGE_NAME/love-${LOVE2D_VERSION}-macos/love.app/Contents/Resources/${PACKAGE_NAME}.love"
+    cp  target/love-"${LOVE2D_VERSION}"-macos/*dll target/love-"${LOVE2D_VERSION}"-macos/license* "$tmp$PACKAGE_NAME"
     cd "$tmp"
     zip -q -9 -r - "$PACKAGE_NAME" > "${PACKAGE_NAME}-macos.zip"
     cd -
-    cp "$tmp/${PACKAGE_NAME}-macos.zip" "target/"
+    cp "$tmp${PACKAGE_NAME}-macos.zip" "target/"
     rm -r "$tmp"
 fi
