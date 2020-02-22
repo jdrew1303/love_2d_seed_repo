@@ -71,17 +71,16 @@ fi
 ### mac dmg build
 if [ "$1" == "macos" ]; then 
 
-    wget "$LOVE2D_MAC_ZIP" -O "target/love-${LOVE2D_VERSION}-macos.zip";     
-    unzip -o "target/love-${LOVE2D_VERSION}-macos.zip" -d "target"
+    wget "$LOVE2D_MAC_ZIP" -O "target/love-macos.zip";     
+    unzip -o "target/love-macos.zip" -d "target"
 
-    ls target/
     tmp="target/tmp/"
     mkdir -p "$tmp$PACKAGE_NAME"
 
-    cp "target/love-${LOVE2D_VERSION}-macos/love.app" "$tmp$PACKAGE_NAME"
-    cp "target/dist/${PACKAGE_NAME}.love" "$tmp$PACKAGE_NAME/love-${LOVE2D_VERSION}-macos/love.app/Contents/Resources/"
-    ls "$tmp$PACKAGE_NAME/love-${LOVE2D_VERSION}-macos/love.app/Contents/Resources/"
-    cp  target/love-"${LOVE2D_VERSION}"-macos/*dll target/love-"${LOVE2D_VERSION}"-macos/license* "$tmp$PACKAGE_NAME"
+    cp "target/love.app" "$tmp$PACKAGE_NAME"
+    cp "target/dist/${PACKAGE_NAME}.love" "$tmp$PACKAGE_NAME/love.app/Contents/Resources/"
+    ls "$tmp$PACKAGE_NAME/love.app/Contents/Resources/"
+    # cp  target/love-macos/*dll target/love-macos/license* "$tmp$PACKAGE_NAME"
     cd "$tmp"
     zip -q -9 -r - "$PACKAGE_NAME" > "${PACKAGE_NAME}-macos.zip"
     cd -
