@@ -18,7 +18,6 @@ script:
 deploy:
   provider: releases
   skip_cleanup: true
-  user: jdrew1303
   file:
   - target/enjoy.love
   - target/enjoy-win.zip
@@ -27,9 +26,5 @@ deploy:
   on:
     tags: false
     all_branches: true
-  password:
-    secure: vF7msHvXlnw0WPaNJyUocgnXtqn4IBCGe3Ens826CiM8Niq2rd58qhuPA4x42EbSFgX0JmjDdxxwU4n6sjsIAVMrzJDOC1QDKkjf5PZGDBBrcFNCrmGq1U4tJfOB4SQrYxOWnwI3TdPl7mN9EzHgo8oBjJLs4SxH0lfSzWKARPpEEzOJ4lgU8JX/ykfo/I5ZNR4H22vVo+HvMX8qXnW3rMsz/wvvkj/zZbArTxtc/GIe0PkqfDtneHOHR1rt4vSAKoUPlWuhB3g3upDEwl5a+eZq4pfeEt+qbTVeMm7kjB13fIM/dcF8JZ22w6do8nJ9cmQnP33Kw5fiCQE7V3wQZ51Dh2eNIZ+a7p7sEr48iJLGJyEerMkBSYPQjkj8PaLP7+3JUD7z3GMaB1LQk6U48Bo4utggaJq92B91sCffNHsjPNddnQTcs3U6Gt2/JvmZdZ+yb10XNed8Y6GGnEl4zMxRxtEgj59TbBNH2n3QLMaG2SF07PIHyunsjf2ZyStqmhqcUA4174ZPXAooOfYixB895euMIcNpx9O6iyvgAYbTp/VPT9KGiOP9KxmGUnuV2EhIIOG4KXxSuShycgzee+YErTfFQxpc0TsjiN0F/R1i0dsQj++barLQ27PVt9b2YVu/9N5Cv08f+A4ma30oKvafvmwUOtkAowpcRz0SCa4=
-# after_success:
-# - "./build.sh deploy $TRAVIS_REPO_SLUG"
-env:
-  global: "$GITHUB_TOKEN"
+  api_key:
+    secure: d9mXfXgQ2BLjEZMdLsbLdI1DeE8tC3wOJsFiEIooRvBOZO+UF5g5xUR8JnFCToBVIMYtKJKOLs/H1nNRT7gg0lUHQvBjupWse97RO9CyVNAHGoqtF67y91ru2dlCF+KxpDpZ/1ZSoJHshiqh5GQivwKodIH/63Hkc+okVp0tRwNZlusvPICPWf/MMRLQlL/wo10olWhbFkGOnNBCUuVoOnoOyQ5MyIC7dHkXJ73SG3YHaFnv6FWTqsriwnpZBCuKJxgMkLWrXTy4H7vE6J8ucCxkInRrpqn25/FhnfANPpRwjtlixvhE2VXGQVw/5EI2VhtGrV2yBX8PF9pPRk/Xh0ODDTbonAtN/Ub/RP1rBS6jGGMILg+f1jML0AiT0sFP2FpwTdFcW+88O9jx5pTwN071M5j7tKyX1qFOpE8GvF0m4rpooabFHLY4JDPCMhmfWS6L/suMgsozX3HuiYJ8G6OzEjQdlUteRynfNHBtw0QoDUcM/XYKFqno6/KSIRTT9CeyG8Y3EA/nSZ6tgaaY25nL4EFAUh8SjdT9Ukn9h1jSAxWjXRIwA8nwPhhh3LCMkf3Oxdj39WJK1bY2+dMkmwprNq0LV5ubmWWLXTDJ0VkdwExT2G2V/rOgqtmEGZhSZ5FRE+di2l7bczDq6+BPCwAkv8doeJzcYK8X7xSCKaY=
