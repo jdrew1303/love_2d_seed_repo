@@ -14,23 +14,6 @@ if [ "$1" == "clean" ]; then
  exit;
 fi
 
-
-### deploy web version to github pages
-if [ "$1" == "deploy" ]; then
- cd "target/${PACKAGE_NAME}-web"
- git init
- git config user.name "autodeploy"
- git config user.email "autodeploy"
- touch .
- git add .
- git commit -m "deploy to github pages"
- git push --force --quiet "https://${GH_TOKEN}@github.com/${$2}.git" master:gh-pages
-
- exit;
-fi
-
-
-
 ##### build #####
 
 find . -iname "*.lua" | xargs luac -p || { echo 'luac parse test failed' ; exit 1; }
@@ -57,7 +40,7 @@ if [ "$1" == "windows" ]; then
     tmp="target/tmp/"
     mkdir -p "$tmp$PACKAGE_NAME"
     
-    cat "target/love-${LOVE2D_VERSION}-win32/love.exe" "target/${PACKAGE_NAME}.love" > "$tmp${PACKAGE_NAME}/${PACKAGE_NAME}.exe"
+    cat "target/love-${LOVE2D_VERSION}-win32/love.exe" "target/dist/${PACKAGE_NAME}.love" > "$tmp${PACKAGE_NAME}/${PACKAGE_NAME}.exe"
     cp  target/love-"${LOVE2D_VERSION}"-win32/*dll target/love-"${LOVE2D_VERSION}"-win32/license* "$tmp$PACKAGE_NAME"
     cd "$tmp"
     zip -q -9 -r - "$PACKAGE_NAME" > "${PACKAGE_NAME}-win.zip"
@@ -88,17 +71,31 @@ fi
 ### mac dmg build
 if [ "$1" == "macos" ]; then 
     wget "$LOVE2D_MAC_ZIP" -O "target/love-${LOVE2D_VERSION}-macos.zip"; 
-    unzip -o "target/love-macos.zip" -d "target"
+    unzip -o "target/love-${LOVE2D_VERSION}-macos.zip" -d "target"
 
     tmp="target/tmp/"
     mkdir -p "$tmp$PACKAGE_NAME"
 
     cp "target/love-${LOVE2D_VERSION}-macos/love.app" "$tmp$PACKAGE_NAME"
-    cp "target/${PACKAGE_NAME}.love" "$tmp$PACKAGE_NAME/love-${LOVE2D_VERSION}-macos/love.app/Contents/Resources/${PACKAGE_NAME}.love"
+    cp "target/dist/${PACKAGE_NAME}.love" "$tmp$PACKAGE_NAME/love-${LOVE2D_VERSION}-macos/love.app/Contents/Resources/${PACKAGE_NAME}.love"
     cp  target/love-"${LOVE2D_VERSION}"-macos/*dll target/love-"${LOVE2D_VERSION}"-macos/license* "$tmp$PACKAGE_NAME"
     cd "$tmp"
     zip -q -9 -r - "$PACKAGE_NAME" > "${PACKAGE_NAME}-macos.zip"
     cd -
     cp "$tmp${PACKAGE_NAME}-macos.zip" "target/dist"
     rm -r "$tmp"
+fi
+
+### deploy web version to github pages
+if [ "$1" == "deploy" ]; then
+ cd "target/dist/${PACKAGE_NAME}-web"
+ git init
+ git config user.name "autodeploy"
+ git config user.email "autodeploy"
+ touch .
+ git add .
+ git commit -m "deploy to github pages"
+ git push --force --quiet "https://${GH_TOKEN}@github.com/${$2}.git" master:gh-pages
+
+ exit;
 fi
