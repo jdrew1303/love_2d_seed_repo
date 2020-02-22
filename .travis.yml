@@ -8,25 +8,28 @@ addons:
     - python2.7
     - luarocks
 before_install:
-  - chmod +x build.sh
-  - luarocks install --local lpeg
-  - "`luarocks path`" # execute the luarocks output - sets the paths for 'local' tree
-script: 
-  - ./build.sh web
-  - ./build.sh windows
-  - ./build.sh macos
+- chmod +x build.sh
+- luarocks install --local lpeg
+- "`luarocks path`"
+script:
+- "./build.sh web"
+- "./build.sh windows"
+- "./build.sh macos"
 deploy:
+  matrix:
   - provider: releases
     skip_cleanup: true
-    api_key: $GITHUB_TOKEN
+    user: j.drew1303@gmail.com
     file:
     - target/enjoy.love
     - target/enjoy-win.zip
     - target/enjoy-web.zip
     on:
-        tags: false
-        all_branches: true
+      tags: false
+      all_branches: true
+  password:
+    secure: XgaZWamm7f+O3y7PBuWgutT36KXjF8K/7LWj8H4a6jxwiwxMKyt8WQh0lq1CtqIyOFVItrLHTkNz62FopsU9yP//SqCjvW7FdtF4gU6RSABlGkQMFBo3772mBoYcjhCy6OMcs8IPqWNpwJZon5SXVEKluBiY1mrZzT+3a/TBXrRbnN5RoPl9uGjGQLTsuw2yJ8BrR/eQ0WqljnKPTQtuO/Wixvu+TUoVfQm1MLfDyQcrls9XxYLK9dl4VcNOmNNBLfzkTqTouNd9gMJsqVQQwpmpStyqTKmqYxBgyo2o9HM2fvRA6C+JXbyfnyhxveaHOkr5Tcr0hgKKMwEPr6QIh/JRshka8dAg9snEAYCElVqJYCKVGPs84z4ucZ248YtY3VYVCKZWI3e6aSWg9aN7MaA4nK2eDEOz/onBRSDsRWh6WCGe2CW3H+TbRsddXhzuie4ehDKw4E9//BVsrgiP+lCq1AbrfzkUEfSZOIJfUfIF4eRcj26rJO/SUy43aJ74rVdJ1hsIaleJpvSz0T0EUzLldR7oskfdCJ2EUCTo0XQgM8LtpqNZMJXAHbLCnAOK5C6szpBmYT43keWR0POKZgioUKDYbGs9PTlMWQ6HKNKGmzKfhU6+VOizkt/xPLIw9czoYVdKyiPvLrHqD5onoOD1GsIpjETbuzb27unCKPU=
 after_success:
 - "./build.sh deploy $TRAVIS_REPO_SLUG"
 env:
-  global: $GITHUB_TOKEN
+  global: "$GITHUB_TOKEN"
