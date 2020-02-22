@@ -1,0 +1,28 @@
+language: bash
+sudo: false
+install: true
+addons:
+  apt:
+    packages:
+    - lua5.1
+    - python2.7
+    - luarocks
+before_install:
+  - luarocks install --local lpeg
+  - "`luarocks path`" # execute the luarocks output - sets the paths for 'local' tree
+script: "./build.sh web && ./build.sh windows && ./build.sh macos"
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key: $GITHUB_TOKEN
+  file:
+  - target/enjoy.love
+  - target/enjoy-win.zip
+  - target/enjoy-web.zip
+  on:
+    tags: true
+    all_branches: true
+after_success:
+- "./build.sh deploy $TRAVIS_REPO_SLUG"
+env:
+  global: $GITHUB_TOKEN
