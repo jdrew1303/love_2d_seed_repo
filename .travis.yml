@@ -16,17 +16,19 @@ script:
   - ./build.sh windows
   - ./build.sh macos
 deploy:
-  provider: releases
-  skip_cleanup: true
-  api_key: $GITHUB_TOKEN
-  file:
-  - target/enjoy.love
-  - target/enjoy-win.zip
-  - target/enjoy-web.zip
-  on:
-    tags: true
-    all_branches: true
-after_success:
+  - provider: releases
+    skip_cleanup: true
+    api_key: $GITHUB_TOKEN
+    file:
+    - target/enjoy.love
+    - target/enjoy-win.zip
+    - target/enjoy-web.zip
+    on:
+        tags: true
+        all_branches: true
+  - provider: script
+    script: build.sh deploy
+    after_success:
 - "./build.sh deploy $TRAVIS_REPO_SLUG"
 env:
   global: $GITHUB_TOKEN
