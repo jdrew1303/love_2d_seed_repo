@@ -18,7 +18,7 @@ script:
 deploy:
   provider: releases
   skip_cleanup: true
-  user: j.drew1303@gmail.com
+  user: jdrew1303
   file:
     - target/enjoy.love
     - target/enjoy-win.zip
