@@ -26,9 +26,7 @@ deploy:
     on:
         tags: false
         all_branches: true
-  - provider: script
-    script: build.sh deploy
-    after_success:
+after_success:
 - "./build.sh deploy $TRAVIS_REPO_SLUG"
 env:
   global: $GITHUB_TOKEN
