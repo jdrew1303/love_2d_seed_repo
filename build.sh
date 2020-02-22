@@ -16,7 +16,7 @@ fi
 
 ##### build #####
 
-find . -iname "*.lua" | xargs luac -p || { echo 'luac parse test failed' ; exit 1; }
+# find . -iname "*.lua" | xargs luac -p || { echo 'luac parse test failed' ; exit 1; }
 
 mkdir -p "target/dist"
 
@@ -37,16 +37,15 @@ if [ "$1" == "windows" ]; then
     wget "$LOVE2D_WINDOWS_ZIP" -O "target/love-win.zip"; 
     unzip -o "target/love-win.zip" -d "target"
 
-    tmp="target/tmp/"
-    mkdir -p "$tmp$PACKAGE_NAME"
+    mkdir -p "target/tmp/${PACKAGE_NAME}"
     
-    cat "target/love-${LOVE2D_VERSION}-win32/love.exe" "target/dist/${PACKAGE_NAME}.love" > "$tmp${PACKAGE_NAME}/${PACKAGE_NAME}.exe"
-    cp  target/love-"${LOVE2D_VERSION}"-win32/*dll target/love-"${LOVE2D_VERSION}"-win32/license* "$tmp$PACKAGE_NAME"
-    cd "$tmp"
-    zip -q -9 -r - "$PACKAGE_NAME" > "${PACKAGE_NAME}-win.zip"
+    cat "target/love-${LOVE2D_VERSION}-win32/love.exe" "target/dist/${PACKAGE_NAME}.love" > "target/tmp/${PACKAGE_NAME}/${PACKAGE_NAME}.exe"
+    cp  target/love-"${LOVE2D_VERSION}"-win32/*dll target/love-"${LOVE2D_VERSION}"-win32/license* "target/tmp/${PACKAGE_NAME}"
+    cd "target/tmp/"
+    zip -q -9 -r - "${PACKAGE_NAME}" > "${PACKAGE_NAME}-win.zip"
     cd -
-    cp "$tmp${PACKAGE_NAME}-win.zip" "target/dist"
-    rm -r "$tmp"
+    cp "target/tmp/${PACKAGE_NAME}-win.zip" "target/dist"
+    rm -r "target/tmp/"
 fi
 
 ### try building app for the web
@@ -62,7 +61,7 @@ if [ "$1" == "web" ]; then
     python ../emscripten/tools/file_packager.py game.data --preload ../../../target/src/@/ --js-output=game.js
     python ../emscripten/tools/file_packager.py game.data --preload ../../../target/src/@/ --js-output=game.js
     #yes, two times!
-    # python -m SimpleHTTPServer 8000
+    
     cd ../..
     cp -r love.js/release-compatibility "$PACKAGE_NAME-web"
     zip -q -9 -r - "$PACKAGE_NAME-web" > "dist/${PACKAGE_NAME}-web.zip"
@@ -70,34 +69,21 @@ fi
 
 ### mac dmg build
 if [ "$1" == "macos" ]; then 
-
     wget "$LOVE2D_MAC_ZIP" -O "target/love-macos.zip";     
-    unzip -o "target/love-macos.zip" -d "target"
-
-    tmp="target/tmp/"
-    mkdir -p "$tmp$PACKAGE_NAME"
-
-    cp "target/love.app" "$tmp$PACKAGE_NAME"
-    cp "target/dist/${PACKAGE_NAME}.love" "$tmp$PACKAGE_NAME/love.app/Contents/Resources/"
-    ls "$tmp$PACKAGE_NAME/love.app/Contents/Resources/"
-    # cp  target/love-macos/*dll target/love-macos/license* "$tmp$PACKAGE_NAME"
-    cd "$tmp"
-    zip -q -9 -r - "$PACKAGE_NAME" > "${PACKAGE_NAME}-macos.zip"
-    cd -
-    cp "$tmp${PACKAGE_NAME}-macos.zip" "target/dist"
-    rm -r "$tmp"
+    unzip -o "target/love-macos.zip" -d "target/dist/"
+    cp "target/dist/${PACKAGE_NAME}.love" "target/dist/love.app/Contents/Resources/"
+    ls "target/dist/love.app/Contents/Resources/"
 fi
 
 ### deploy web version to github pages
 if [ "$1" == "deploy" ]; then
- cd "target/dist/${PACKAGE_NAME}-web"
- git init
- git config user.name "autodeploy"
- git config user.email "autodeploy"
- touch .
- git add .
- git commit -m "deploy to github pages"
- git push --force --quiet "https://${GH_TOKEN}@github.com/${$2}.git" master:gh-pages
-
- exit;
+    cd "target/dist/${PACKAGE_NAME}-web"
+    git init
+    git config user.name "autodeploy"
+    git config user.email "autodeploy"
+    touch .
+    git add .
+    git commit -m "deploy to github pages"
+    git push --force --quiet "https://${GH_TOKEN}@github.com/${$2}.git" master:gh-pages
+    exit;
 fi
