@@ -22,7 +22,6 @@ mkdir -p "target/dist"
 
 
 ### .love
-
 cp -r src target/src
 cd target/src
 
@@ -64,6 +63,7 @@ if [ "$1" == "web" ]; then
     
     cd ../..
     cp -r love.js/release-compatibility "$PACKAGE_NAME-web"
+    cp "$PACKAGE_NAME-web" "dist/${PACKAGE_NAME}-web"
     zip -q -9 -r - "$PACKAGE_NAME-web" > "dist/${PACKAGE_NAME}-web.zip"
 fi
 
