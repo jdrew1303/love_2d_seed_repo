@@ -6,7 +6,7 @@ PACKAGE_NAME="love2d_demo"
 
 LOVE2D_VERSION="0.10.2"
 LOVE2D_WINDOWS_ZIP="https://bitbucket.org/rude/love/downloads/love-${LOVE2D_VERSION}-win32.zip"
-LOVE2D_MAC_ZIP="https://bitbucket.org/rude/love/downloads/love-${LOVE2D_VERSION}-macos.zip"
+LOVE2D_MAC_ZIP="https://bitbucket.org/rude/love/downloads/love-${LOVE2D_VERSION}-macosx-x64.zip"
 
 ### clean
 if [ "$1" == "clean" ]; then
