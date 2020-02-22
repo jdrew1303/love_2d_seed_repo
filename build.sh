@@ -46,7 +46,7 @@ cd target/src
 # # compile .ink story into lua table so the runtime will not need lpeg dep.
 # lua lib/pink/pink/pink.lua parse game.ink > game.lua
 
-zip -q -9 -r - . > "../${PACKAGE_NAME}.love"
+zip -q -9 -r - . > "../dist/${PACKAGE_NAME}.love"
 cd -
 
 ### windows .exe
@@ -62,7 +62,7 @@ if [ "$1" == "windows" ]; then
     cd "$tmp"
     zip -q -9 -r - "$PACKAGE_NAME" > "${PACKAGE_NAME}-win.zip"
     cd -
-    cp "$tmp${PACKAGE_NAME}-win.zip" "target/"
+    cp "$tmp${PACKAGE_NAME}-win.zip" "target/dist"
     rm -r "$tmp"
 fi
 
@@ -82,7 +82,7 @@ if [ "$1" == "web" ]; then
     # python -m SimpleHTTPServer 8000
     cd ../..
     cp -r love.js/release-compatibility "$PACKAGE_NAME-web"
-    zip -q -9 -r - "$PACKAGE_NAME-web" > "${PACKAGE_NAME}-web.zip"
+    zip -q -9 -r - "$PACKAGE_NAME-web" > "dist/${PACKAGE_NAME}-web.zip"
 fi
 
 ### mac dmg build
@@ -99,6 +99,6 @@ if [ "$1" == "macos" ]; then
     cd "$tmp"
     zip -q -9 -r - "$PACKAGE_NAME" > "${PACKAGE_NAME}-macos.zip"
     cd -
-    cp "$tmp${PACKAGE_NAME}-macos.zip" "target/"
+    cp "$tmp${PACKAGE_NAME}-macos.zip" "target/dist"
     rm -r "$tmp"
 fi

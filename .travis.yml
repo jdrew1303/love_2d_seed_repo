@@ -18,11 +18,8 @@ script:
 deploy:
   provider: releases
   skip_cleanup: true
-  file:
-  - target/enjoy.love
-  - target/enjoy-win.zip
-  - target/enjoy-web.zip
-  - target/enjoy-macos.zip
+  file_glob: true
+  file: target/dist/*.{love,zip}
   on:
     tags: false
     all_branches: true
