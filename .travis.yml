@@ -20,7 +20,7 @@ deploy:
     skip_cleanup: true
     draft: true
     file_glob: true
-    file: target/dist/*.{love,zip,app}
+    file: target/dist/*.{love,zip}
     on:
       all_branches: true
     api_key:
