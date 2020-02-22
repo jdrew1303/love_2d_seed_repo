@@ -86,7 +86,7 @@ fi
 
 ### mac dmg build
 if [ "$1" == "macos" ]; then 
-    wget "$LOVE2D_MAC_ZIP" -O "target/love-macos.zip"; 
+    wget "$LOVE2D_MAC_ZIP" -O "target/love-${LOVE2D_VERSION}-macos.zip"; 
     unzip -o "target/love-macos.zip" -d "target"
 
     tmp="target/tmp/"
