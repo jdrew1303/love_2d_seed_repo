@@ -11,9 +11,9 @@ before_install:
   - luarocks install --local lpeg
   - "`luarocks path`" # execute the luarocks output - sets the paths for 'local' tree
 script: 
-  - sudo ./build.sh web
-  - sudo ./build.sh windows
-  - sudo ./build.sh macos
+  - ./build.sh web
+  - ./build.sh windows
+  - ./build.sh macos
 deploy:
   provider: releases
   skip_cleanup: true
