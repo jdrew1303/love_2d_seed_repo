@@ -3,9 +3,9 @@ local push = require('modules.push.push')
 
 -- concord is the entity component system
 local concord = require('modules.concord.concord');
-concord.loadComponents('components');
-concord.loadAssemblages('assemblages')
-concord.loadSystems('systems');
+-- concord.loadComponents('components');
+-- concord.loadAssemblages('assemblages')
+-- concord.loadSystems('systems');
 
 
 function love.load()
