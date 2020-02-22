@@ -40,13 +40,13 @@ mkdir "target"
 
 ### .love
 
-cp -r src target
+cp -r . target/src
 cd target/src
 
 # # compile .ink story into lua table so the runtime will not need lpeg dep.
 # lua lib/pink/pink/pink.lua parse game.ink > game.lua
 
-zip -9 -r - . > "../${PACKAGE_NAME}.love"
+zip -q -9 -r - . > "../${PACKAGE_NAME}.love"
 cd -
 
 ### windows .exe
@@ -59,7 +59,7 @@ if [ "$1" == "windows" ]; then
     cat "target/love-${LOVE2D_VERSION}-win32/love.exe" "target/${PACKAGE_NAME}.love" > "$tmp/${PACKAGE_NAME}/${PACKAGE_NAME}.exe"
     cp  target/love-"${LOVE2D_VERSION}"-win32/*dll target/love-"${LOVE2D_VERSION}"-win32/license* "$tmp/$PACKAGE_NAME"
     cd "$tmp"
-    zip -9 -r - "$PACKAGE_NAME" > "${PACKAGE_NAME}-win.zip"
+    zip -q -9 -r - "$PACKAGE_NAME" > "${PACKAGE_NAME}-win.zip"
     cd -
     cp "$tmp/${PACKAGE_NAME}-win.zip" "target/"
     rm -r "$tmp"
@@ -81,7 +81,7 @@ if [ "$1" == "web" ]; then
     # python -m SimpleHTTPServer 8000
     cd ../..
     cp -r love.js/release-compatibility "$PACKAGE_NAME-web"
-    zip -9 -r - "$PACKAGE_NAME-web" > "${PACKAGE_NAME}-web.zip"
+    zip -q -9 -r - "$PACKAGE_NAME-web" > "${PACKAGE_NAME}-web.zip"
 fi
 
 ### mac dmg build
@@ -96,7 +96,7 @@ if [ "$1" == "macos" ]; then
     cp "target/${PACKAGE_NAME}.love" "$tmp/$PACKAGE_NAME/love-${LOVE2D_VERSION}-macos/love.app/Contents/Resources/${PACKAGE_NAME}.love"
     cp  target/love-"${LOVE2D_VERSION}"-macos/*dll target/love-"${LOVE2D_VERSION}"-macos/license* "$tmp/$PACKAGE_NAME"
     cd "$tmp"
-    zip -9 -r - "$PACKAGE_NAME" > "${PACKAGE_NAME}-macos.zip"
+    zip -q -9 -r - "$PACKAGE_NAME" > "${PACKAGE_NAME}-macos.zip"
     cd -
     cp "$tmp/${PACKAGE_NAME}-macos.zip" "target/"
     rm -r "$tmp"
