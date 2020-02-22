@@ -20,15 +20,15 @@ deploy:
   skip_cleanup: true
   user: jdrew1303
   file:
-    - target/enjoy.love
-    - target/enjoy-win.zip
-    - target/enjoy-web.zip
-    - target/enjoy-macos.zip
+  - target/enjoy.love
+  - target/enjoy-win.zip
+  - target/enjoy-web.zip
+  - target/enjoy-macos.zip
   on:
     tags: false
     all_branches: true
   password:
-    secure: XgaZWamm7f+O3y7PBuWgutT36KXjF8K/7LWj8H4a6jxwiwxMKyt8WQh0lq1CtqIyOFVItrLHTkNz62FopsU9yP//SqCjvW7FdtF4gU6RSABlGkQMFBo3772mBoYcjhCy6OMcs8IPqWNpwJZon5SXVEKluBiY1mrZzT+3a/TBXrRbnN5RoPl9uGjGQLTsuw2yJ8BrR/eQ0WqljnKPTQtuO/Wixvu+TUoVfQm1MLfDyQcrls9XxYLK9dl4VcNOmNNBLfzkTqTouNd9gMJsqVQQwpmpStyqTKmqYxBgyo2o9HM2fvRA6C+JXbyfnyhxveaHOkr5Tcr0hgKKMwEPr6QIh/JRshka8dAg9snEAYCElVqJYCKVGPs84z4ucZ248YtY3VYVCKZWI3e6aSWg9aN7MaA4nK2eDEOz/onBRSDsRWh6WCGe2CW3H+TbRsddXhzuie4ehDKw4E9//BVsrgiP+lCq1AbrfzkUEfSZOIJfUfIF4eRcj26rJO/SUy43aJ74rVdJ1hsIaleJpvSz0T0EUzLldR7oskfdCJ2EUCTo0XQgM8LtpqNZMJXAHbLCnAOK5C6szpBmYT43keWR0POKZgioUKDYbGs9PTlMWQ6HKNKGmzKfhU6+VOizkt/xPLIw9czoYVdKyiPvLrHqD5onoOD1GsIpjETbuzb27unCKPU=
+    secure: byLxCFyNSXvUA63ayPg9rwNp50FCE4iHTrhWg+GVIgNUzUqmfLqO+aTgnwaGvCLu5LwKL4YVQ/7vVw2cQLHvKPZfkdDn+WjH5B21NcC54sYji8ZuQlo3cXNlEqMc1xM6R3zdW02TM0N3R/UISgRvcW2ivI30gKrABSDhqbKg97cJBHiAvqJwTQHfa446kR1t9kjPIx3NW9wJAbBYxhZ9m+3WP7Q+AXDkzE0vrj0af9yyfCMMc8pmx6YOhYB7Dh4mSs0SvkNHwlveGOxa1lE8BxnvkDoidy4ZBXS+afXN1Vlks7LVJWu+9GucGbwpZnOG055rE5yHH4RcUe+CBq2Z8IcOSVy2ysKJs03Cj667uxcapyli1wBDKPEcGhy1WpnpMyNILfIUwQdsTuOTMUCagEg7v69iWA2AL7+r3TFHsBsmj8/vTOMPKr2+hW4jBiJIbVVDRrTqlk/4oCBwG9ytq0ZQPZGKQwFm2N1tk5+o+hQpbDX5QUCU9ej1WsBC32NkRiByIW5JiQiDrznA1bSTBsETY4H7VPDW4JxtR6lykHJlIgHGp11/NCTPJQsz/C/eWDUF4SyruiTicEc248I2kToDyHW2Nijvobbq9R+MAvQqiLAo9BC4LDUlyGiEtUNB/pwjckUwU3yv86BU4VuL/j5DLQ6WiWQOTkVZe/oSFpQ=
 after_success:
 - "./build.sh deploy $TRAVIS_REPO_SLUG"
 env:
