@@ -72,7 +72,7 @@ if [ "$1" == "macos" ]; then
     wget "$LOVE2D_MAC_ZIP" -O "target/love-macos.zip";     
     unzip -o "target/love-macos.zip" -d "target/dist/"
     cp "target/dist/${PACKAGE_NAME}.love" "target/dist/love.app/Contents/Resources/"
-    zip -q -9 -r - "target/dist/love.app" > "dist/${PACKAGE_NAME}-mac.zip"
+    zip -q -9 -r - "target/dist/love.app" > "target/dist/${PACKAGE_NAME}-mac.zip"
 fi
 
 ### deploy web version to github pages
